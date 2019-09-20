@@ -44,8 +44,8 @@ print(state)
 torch.manual_seed(1)
 np.random.seed(1)
 
-train_data = dset.MNIST('/home-nfs/dan/cifar_data/mnist', train=True, transform=trn.ToTensor())
-test_data = dset.MNIST('/home-nfs/dan/cifar_data/mnist', train=False, transform=trn.ToTensor())
+train_data = dset.MNIST('../../data', download=False, train=True, transform=trn.ToTensor())
+test_data = dset.MNIST('../../data', download=False, train=False, transform=trn.ToTensor())
 num_classes = 10
 
 calib_indicator = ''
@@ -62,7 +62,6 @@ test_loader = torch.utils.data.DataLoader(
 
 # Create model
 net = ConvNet()
-
 
 start_epoch = 0
 
@@ -94,7 +93,7 @@ optimizer = torch.optim.SGD(
 
 def cosine_annealing(step, total_steps, lr_max, lr_min):
     return lr_min + (lr_max - lr_min) * 0.5 * (
-            1 + np.cos(step / total_steps * np.pi))
+        1 + np.cos(step / total_steps * np.pi))
 
 
 scheduler = torch.optim.lr_scheduler.LambdaLR(
