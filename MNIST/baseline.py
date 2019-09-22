@@ -44,8 +44,8 @@ print(state)
 torch.manual_seed(1)
 np.random.seed(1)
 
-train_data = dset.MNIST('../../data', download=False, train=True, transform=trn.ToTensor())
-test_data = dset.MNIST('../../data', download=False, train=False, transform=trn.ToTensor())
+train_data = dset.MNIST('../../data', download=True, train=True, transform=trn.ToTensor())
+test_data = dset.MNIST('../../data', download=True, train=False, transform=trn.ToTensor())
 num_classes = 10
 
 calib_indicator = ''
